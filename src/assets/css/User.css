@@ -1,0 +1,166 @@
+img{
+	display: block;
+}
+input{
+	border: 0;
+	display: block;
+	outline: none;
+}
+a{	color:#000;
+	text-decoration: none;
+}
+a:hover{
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+
+}
+.top{
+	width: 100%;
+	height: 3.3rem;
+	background: #000;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.touxiang
+{   margin-top: 1rem;
+	margin-left: 0.33rem;
+	width: 1.56rem;
+	height: 1.56rem;
+	float: left;
+}
+.clear li.lite{padding-top: 75px;margin-left: 230px}
+.clear li{margin-left: 230px;padding-top: 8px}
+.clear li p,span{color: #fff;display: inline;}
+
+.touxiang img{
+	display: block;
+ 	width: 100%;
+    height: 100%;
+}
+.yonghuming 
+{	margin-top: 1.29rem;
+	margin-left: 0.4rem;
+    font-size: 0.34rem;
+    color: #F7F7F7;
+    float: left;
+    line-height: 0.6rem;
+}
+.yonghuming p
+{
+	color: #6F6F6F;
+	font-size: 0.3rem;
+	margin-right: 0.1rem;
+}
+.erweima{    
+	 margin-top: 1.2rem;
+	 margin-right: 0.33rem;
+	 width: 1rem;
+	 height: 1rem;
+	 float: right;
+	 background: #373737;
+	 border-radius: 50%;
+	 color: #F7F7F7;
+	 text-align: center;
+	 line-height: 1rem;
+}
+.erweima .iconfont{
+	font-size: 0.5rem;
+}
+/* 我的订单开始 */
+.dd{
+	width: 95%;
+	height: 1.03rem;
+	float: right;
+	border-bottom:1px solid #D9D9D9;
+}
+.dd a{
+	font-size: 0.3rem;
+	color: #383838;
+	line-height: 1.03rem;
+}
+.dd a:last-child{
+	float: right;
+	margin-right: 4%;
+}
+.dd a:first-child{
+	float: left;
+}
+.dfk{
+	width: 100%;
+	height: 1.4rem;
+	padding: 0 0.2rem;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.dfk a{
+	width:1rem;
+	height: 0.9rem;
+	padding-top: 0.1rem;
+	text-align: center;
+	font-size: 0.22rem;
+    color: #363636;
+}
+.dfk a .iconfont{
+	font-size: 0.45rem;
+}
+/* 换行 */
+.huanhang1{
+	width: 100%;
+	height: 0.24rem;
+	background: #f4f4f4;
+}
+.dd1{
+	width: 100%;
+}
+.dd1 a{
+	margin-left: 0.35rem;
+}
+.dd2{
+	width: 100%;
+	height: 2rem;
+	padding:0.3rem;
+	text-align: center;
+	border-bottom:1px solid #D9D9D9;
+	box-sizing: border-box;
+	overflow: hidden;
+	display: flex;
+	justify-content: space-between;
+}
+.dd2 a{
+	display: block;
+	width: 1rem;
+	height: 0.9rem;
+	padding-top: 0.1rem;
+	text-align: center;
+	font-size: 0.24rem;
+    color: #000;
+}
+.dd2 a img{
+	width: 0.57rem;
+	height: 0.57rem;
+	margin: 0 auto 0.05rem;
+}
+.dd3{
+	height: 1.56rem;
+	border:0;
+}
+.huanhang2{
+	margin-bottom: 1rem;
+}
+.tiaozhuan{
+	display: block;
+}
+input[type="button"]{
+	width: 88%;
+	height: 1.1rem;
+    outline: none;
+    margin: 1rem auto 0;
+    border-bottom: 0.02rem solid #bbb;
+    font-size: 0.32rem;
+    text-align: center;
+	border-radius: 0.1rem;
+	background: #B4282D;
+	color: #C66A6B;
+}
