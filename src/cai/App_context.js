@@ -25,8 +25,7 @@ class App extends Component {
         appData: '时间',
         loading: false,
         dian: '点赞',
-        fen: '分享',
-        bFoot:true
+        fen: '分享'
     }
 
     setLoaDing = (bl) => { this.setState({ loading: bl }) }
@@ -47,31 +46,9 @@ class App extends Component {
         }
     };
 
-    //路由观测|监听
-    componentWillReceiveProps(nextProps){
-        let path = nextProps.location.pathname;
-        // console.log(path)
-        this.checkRoute(path)
-    }
-    componentDidMount(){
-        let path = this.props.location.pathname;
-        // console.log(path)
-        this.checkRoute(path)
-    }
-    checkRoute=(path)=>{
-        console.log(path)
-
-        if(/detail|login/.test(path)){
-            this.setState({bFoot:false})
-        }
-        if(/home|column|follow|user/.test(path)){
-            this.setState({bFoot:true})
-        }
-    }
-
     render() {
         return (
-            <>
+            <div className='App'>
                 {this.state.loading && <Loading />}
                 {/*  匹配+展示 */}
                 <Switch>
@@ -89,9 +66,9 @@ class App extends Component {
                     <Redirect exact from="/" to="/home" />
                     <Route component={Error} />
                 </Switch>
-                {this.state.bFoot && <Footer {...this.props}/>}
-                {/* <Footer /> */}
-            </>
+
+                <Footer />
+            </div>
         );
     }
 }

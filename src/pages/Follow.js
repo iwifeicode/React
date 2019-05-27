@@ -1,17 +1,35 @@
 import React, { Component } from 'react'
 import '../assets/css/Follow.css'
 
+import propTypes from 'prop-types';
+
 import axios from 'axios'
+
+//私有引入
+import date from '../api/date'
+// let date = (time) =>'shijian'
+
+import connect from 'react-redux/es/connect/connect'
+
+import {axios1} from '../store/actions'
 
 class Follow extends Component {
 
     state={
         foll:[]
     };
+    
+
+    static contextTypes = {
+        appData: propTypes.string,
+        dian: propTypes.string,
+        fen: propTypes.string,
+        setLoaDing:propTypes.func
+      }
 
     render() {
         
-        return this.state.foll && this.state.foll.map((item,index)=><div key={item.id}>
+        return this.props.follow && this.props.follow.map((item,index)=><div key={item.id}>
         <div className='fol'>
             <p>热点</p>
         </div>
@@ -25,8 +43,8 @@ class Follow extends Component {
                     <p>{item.detail.content}</p>
                 </div>
                 <div className="aui-coll-s b-line">
-                    <div className="aui-coll-l"><i className="aui-icon-zan"></i>点赞</div>
-                    <div className="aui-coll-f"><i className="aui-icon-shi"></i>分享</div>
+                    <div className="aui-coll-l"><i className="aui-icon-zan"></i>{this.context.dian}</div>
+                    <div className="aui-coll-f"><i className="aui-icon-shi"></i>{this.context.fen}/{date(date.time)}</div>
                 </div>
                 <div className="devider b-line"></div>
             </div>
@@ -34,10 +52,27 @@ class Follow extends Component {
     </div>)
     }
     async componentDidMount() {
-        let res = await axios({ url: '/mock/follow', params: { _limit: 6 } })
+        this.context.setLoaDing(true)
+
+        let res = await axios({ url: '/mock/follow', params: { _limit: 16 } })
         console.log(res)
         this.setState({foll:res.data.page_data})
+
+        this.context.setLoaDing(false)
+    }
+    componentDidMount(){
+        this.props.get({ url: '/mock/follow', params: { _limit: 16 },typename: 'UPDATE_FOLLOW'})
     }
 }
 
-export default Follow;
+const State = state =>({
+    follow : state.follow
+})
+
+const Dispatch=dispatch=>({
+    get:({url,params,typename})=>dispatch(axios1({
+        dispatch,url,params,typename
+    }))
+})
+
+export default connect(State,Dispatch)(Follow);

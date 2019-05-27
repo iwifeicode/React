@@ -1,9 +1,20 @@
 import React,{Component} from "react";
+
+// import propTypes from 'prop-types'
+
 import style from  '../assets/css/Footer.module.css'
 
-import { NavLink } from 'react-router-dom'
+import { NavLink,withRouter } from 'react-router-dom'
 
 class Footer extends Component {
+
+  // static contextTypes = {
+  //   appData: propTypes.string,
+  // };
+  // componentDidMount(){
+  //   console.log("footer组件上下文:",this.context.appData)
+  // }
+
   render() {
     return (
       <div className={style.nav}>
@@ -26,4 +37,4 @@ class Footer extends Component {
   }
 }
 
-export default Footer;
+export default withRouter(Footer);

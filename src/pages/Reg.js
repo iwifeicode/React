@@ -18,14 +18,15 @@ class Reg extends Component {
     }
     submit = async ()=>{
         let res = await axios({
-            url:"/mock/reg",
+            url:'/mock/reg',
             params:{
-                username:this.state.username,
-                password:this.state.password
+              username:this.state.username,
+              password:this.state.password
             }
-        })
-        // console.log(res)
-        if (res.data.error===0){
+          });
+      
+          // console.log(res)
+          if (res.data.error===0){
             //写入local && 跳转user
             localStorage.setItem('rc_user',JSON.stringify(res.data.page_data))
             this.props.history.push('/user')

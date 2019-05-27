@@ -5,35 +5,59 @@ import { Link } from 'react-router-dom'
 
 import axios from 'axios'
 
+import connect from 'react-redux/es/connect/connect'
+
+import { axios2 } from '../store/actions'
+
 class Login extends Component {
 
-    state={
-        username:'',
-        password:''
+    state = {
+        username: '',
+        password: ''
     }
-    changeIpt = (ev) =>{
+    changeIpt = (ev) => {
         this.setState({
-            [ev.target.name]:ev.target.value
+            [ev.target.name]: ev.target.value
         })
     }
-    submit = async ()=>{
-        let res = await axios({
-            url:"/mock/login",
-            params:{
-                username:this.state.username,
-                password:this.state.password
+    submit = async () => {
+        this.props.get({
+            url:'/mock/login',
+            params: {
+              username:this.state.username,
+              password:this.state.password
+            },
+            typename:'UPDATE_USER'
+          }).then(
+            error => {
+              console.log(error);
+              if (error === 0){
+                localStorage.setItem('rc_user',JSON.stringify(this.props.user))
+                this.props.history.push('/user')
+              } else {
+                alert('失败')
+              }
             }
-        })
+          )
+
+        // let res = await axios({
+        //     url:"/mock/login",
+        //     params:{
+        //         username:this.state.username,
+        //         password:this.state.password
+        //     }
+        // })
+
         // console.log(res)
-        if (res.data.error===0){
-            //写入local && 跳转user
-            localStorage.setItem('rc_user',JSON.stringify(res.data.page_data))
-            this.props.history.push('/user')
-          } else {
-            alert('失败')
-          }
+        // if (res.data.error === 0) {
+        //     //写入local && 跳转user
+        //     localStorage.setItem('rc_user', JSON.stringify(res.data.page_data))
+        //     this.props.history.push('/user')
+        // } else {
+        //     alert('失败')
+        // }
     }
-    
+
     render() {
         return (
             <div className='Login'>
@@ -56,4 +80,14 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const State = state => ({
+    user: state.user
+})
+
+const Dispatch = dispatch => ({
+    get: ({ url, params, typename }) => dispatch(axios2({
+        url, params, typename
+    }))
+})
+
+export default connect(State, Dispatch)(Login);

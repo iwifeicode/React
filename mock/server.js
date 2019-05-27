@@ -9,11 +9,11 @@ const server = jsonServer.create();//创建jsonserver 服务对象
 const router = jsonServer.router(db);//创建路由对象
 const middlewares = jsonServer.defaults();
 
-let mock='/mock';//创建根api名 这里的 /mock 如同 后端真实/api
+let mock = '/mock';//创建根api名 这里的 /mock 如同 后端真实/api
 
 //路由自定义
 const rewriter = jsonServer.rewriter({
-  [mock+"/*"]: "/$1",
+  [mock + "/*"]: "/$1",
 
   "/product\\?dataName=:dataName": "/:dataName",
   "/banner\\?dataName=:dataName": "/:dataName",
@@ -35,20 +35,20 @@ server.use((request, res, next) => {//可选 统一修改请求方式
 server.use(jsonServer.bodyParser);//抓取body数据使用json-server中间件
 
 //模拟校验
-server.use(mock+'/login', (req, res) => {
+server.use(mock + '/login', (req, res) => {
   console.log(req.query, req.body);//抓取提交过来的query和body
-  let username=req.query.username;
-  let password=req.query.password;
-  (username === 'aa' && password === 'aa123')?
+  let username = req.query.username;
+  let password = req.query.password;
+  (username === 'aa' && password === 'aa123') ?
     res.jsonp({
       "error": 0,
       "msg": "登录成功",
       "page_data": {
-        "follow": mr.integer(1,5),
-        "fans": mr.integer(1,5),
+        "follow": mr.integer(1, 5),
+        "fans": mr.integer(1, 5),
         "nikename": mr.cname(),
-        "icon": mr.image('20x20',mr.color(),mr.cword(1)),
-        "time": mr.integer(13,13)
+        "icon": mr.image('20x20', mr.color(), mr.cword(1)),
+        "time": mr.integer(13, 13)
       }
     }) :
     res.jsonp({
@@ -57,18 +57,18 @@ server.use(mock+'/login', (req, res) => {
     })
 
 });
-server.use(mock+'/reg', (req, res) => {
-  let username=req.query.username;
+server.use(mock + '/reg', (req, res) => {
+  let username = req.query.username;
   (username !== 'aa') ?
     res.jsonp({
       "error": 0,
       "msg": "注册成功",
       "page_data": {
-        "follow": mr.integer(0,0),
-        "fans": mr.integer(0,0),
+        "follow": mr.integer(0, 0),
+        "fans": mr.integer(0, 0),
         "nikename": mr.cname(),
-        "icon": mr.image('20x20',mr.color(),mr.cword(1)),
-        "time": mr.integer(13,13)
+        "icon": mr.image('20x20', mr.color(), mr.cword(1)),
+        "time": mr.integer(13, 13)
       }
     }) :
     res.jsonp({
@@ -87,11 +87,13 @@ router.render = (req, res) => {
   // console.log(len);
 
 
+  setTimeout(() => {
     res.jsonp({
       error: len !== 0 ? 0 : 1,
       msg: len !== 0 ? '成功' : '失败',
       page_data: res.locals.data
     })
+  }, 1000)
 
 
   // res.jsonp(res.locals.data)
