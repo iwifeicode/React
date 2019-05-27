@@ -38,14 +38,14 @@ class Column extends Component {
     }
     async componentDidMount() {
         this.context.setLoaDing(true)
-        let res = await axios({ url: '/mock/column', params: { _limit: 8 } })
+        let res = await axios({ url: '/mock/column', params: { _limit: 18} })
         console.log(res)
         this.setState({ lists: res.data.page_data })
 
         this.context.setLoaDing(false)
     }
     componentDidMount(){
-        this.props.get({ url: '/mock/column', params: { _limit: 8 },typename: 'UPDATE_COLUMN'})
+        this.props.get({ url: '/mock/column', params: { _limit: 18},typename: 'UPDATE_COLUMN'})
     }
 }
 

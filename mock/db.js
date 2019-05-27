@@ -29,8 +29,8 @@ let mapData = (n) => {
 module.exports = {
   ...Mock.mock({
     'home': mapData(32),//解决 auth_icon 不随机
-    'follow': mapData(21),
-    'column': mapData(11),
+    'follow': mapData(28),
+    'column': mapData(26),
     'banner|10': [
       {
         // 属性 id 是一个自增数，起始值为 1，每次增 1
